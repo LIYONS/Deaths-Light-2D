@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Rigidbody2D rb;
     [SerializeField] float playerSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] float fallMultiplier;
     [SerializeField] ParticleSystem JumpPs;
+    [SerializeField] float jumpCount;
+    [SerializeField] float jumpDelay;
+    [SerializeField] GameObject deathPs;
+    float jumpCheck;
+    Rigidbody2D rb;
     bool facingRight;
+    float jumpTimer;
 
     private void Start()
     {
+        jumpCheck = 0f;
         facingRight = true;
         rb = GetComponent<Rigidbody2D>();
     }
@@ -43,8 +49,17 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        rb.velocity += new Vector2(0, jumpForce);
-        JumpPs.Play();
+        if (jumpCheck < jumpCount && jumpTimer<Time.time)
+        {
+            rb.velocity += new Vector2(0, jumpForce);
+            JumpPs.Play();
+            jumpCheck++;
+            if(jumpCheck==jumpCount)
+            {
+                jumpTimer = Time.time + jumpDelay;
+                jumpCheck = 0f;
+            }
+        }
     }
     void Flip()
     {
@@ -65,5 +80,10 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = 2f;
         }
+    }
+    public void Death()
+    {
+        GameObject DeathPs= Instantiate(deathPs, transform.position,Quaternion.identity) as GameObject;
+        gameObject.SetActive(false);
     }
 }
