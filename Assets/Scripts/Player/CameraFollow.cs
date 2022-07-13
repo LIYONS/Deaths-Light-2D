@@ -12,8 +12,8 @@ public class CameraFollow : MonoBehaviour
     {
         if(player)
         {
-            offsetX = transform.position.x - player.transform.position.x;
-            offsetY = transform.position.y - player.transform.position.y;
+            offsetX = Mathf.Abs(transform.position.x - player.transform.position.x);
+            offsetY = Mathf.Abs(transform.position.y - player.transform.position.y);
         }
     }
 
