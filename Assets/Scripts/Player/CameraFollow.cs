@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public GameObject player;
+    public Transform player;
     float offsetX;
     float offsetY;
 
@@ -12,8 +12,8 @@ public class CameraFollow : MonoBehaviour
     {
         if(player)
         {
-            offsetX = Mathf.Abs(transform.position.x - player.transform.position.x);
-            offsetY = Mathf.Abs(transform.position.y - player.transform.position.y);
+            offsetX = Mathf.Abs( transform.position.x - player.position.x);
+            offsetY = Mathf.Abs( transform.position.y - player.position.y);
         }
     }
 
@@ -21,7 +21,7 @@ public class CameraFollow : MonoBehaviour
     {
         if(player)
         {
-            transform.position = new Vector3(player.transform.position.x - offsetX, player.transform.position.y-offsetY, transform.position.z);
+            transform.position = new Vector3(player.position.x + offsetX, player.position.y+offsetY, transform.position.z);
         }
     }
 }
