@@ -9146,6 +9146,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Patrol-Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1745339379689890479, guid: 4d9ff48aba9c41c41a7f3e819025a101, type: 3}
+      propertyPath: patrolDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3100616229149474177, guid: 4d9ff48aba9c41c41a7f3e819025a101, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -9489,6 +9493,10 @@ PrefabInstance:
     - target: {fileID: 1745339379689890464, guid: 4d9ff48aba9c41c41a7f3e819025a101, type: 3}
       propertyPath: m_Name
       value: Patrol-Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745339379689890479, guid: 4d9ff48aba9c41c41a7f3e819025a101, type: 3}
+      propertyPath: patrolDistance
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3100616229149474177, guid: 4d9ff48aba9c41c41a7f3e819025a101, type: 3}
       propertyPath: m_RootOrder
@@ -15196,6 +15204,10 @@ PrefabInstance:
     - target: {fileID: 1745339379689890464, guid: 4d9ff48aba9c41c41a7f3e819025a101, type: 3}
       propertyPath: m_Name
       value: Patrol-Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745339379689890479, guid: 4d9ff48aba9c41c41a7f3e819025a101, type: 3}
+      propertyPath: patrolDistance
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3100616229149474177, guid: 4d9ff48aba9c41c41a7f3e819025a101, type: 3}
       propertyPath: m_RootOrder
