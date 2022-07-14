@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-
+    SoundManager soundManager;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject gameOverMenu;
     bool isPaused;
@@ -15,6 +15,7 @@ public class Menu : MonoBehaviour
         isPaused = false;
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);
+        soundManager = SoundManager.instance;
     }
 
     private void Update()
@@ -36,23 +37,27 @@ public class Menu : MonoBehaviour
     }
     public void Retry()
     {
+        soundManager.PlaySfx(Sounds.ButtonClick);
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void Pause()
     {
+        soundManager.PlaySfx(Sounds.ButtonClick);
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
     }
     public void Resume()
     {
+        soundManager.PlaySfx(Sounds.ButtonClick);
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
     }
     public void Quit()
     {
+        soundManager.PlaySfx(Sounds.ButtonClick);
         Application.Quit();
     }
 }
