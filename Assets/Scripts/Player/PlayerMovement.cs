@@ -83,6 +83,8 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Death()
     {
+        GameManagerSingleton gameManager=GameManagerSingleton.instance;
+        gameManager.GameOver();
         GameObject DeathPs= Instantiate(deathPs, transform.position,Quaternion.identity) as GameObject;
         gameObject.SetActive(false);
     }
