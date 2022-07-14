@@ -1,32 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManagerSingleton : MonoBehaviour
+public class Menu : MonoBehaviour
 {
-
-    private static GameManagerSingleton _instance;
-
-    public static GameManagerSingleton instance { get { return _instance; } }
-
 
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject gameOverMenu;
     bool isPaused;
-
-    private void Awake()
-    {
-        if(_instance)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            _instance = this;
-            DontDestroyOnLoad(this);
-        }
-    }
     private void Start()
     {
         isPaused = false;
@@ -36,15 +19,16 @@ public class GameManagerSingleton : MonoBehaviour
 
     private void Update()
     {
-        if(isPaused && Input.GetKeyDown(KeyCode.Escape))
+        if (isPaused && Input.GetKeyDown(KeyCode.Escape))
         {
             Resume();
         }
-        else if(!isPaused && Input.GetKeyDown(KeyCode.Escape))
+        else if (!isPaused && Input.GetKeyDown(KeyCode.Escape))
         {
             Pause();
         }
     }
+
     public void GameOver()
     {
         gameOverMenu.SetActive(true);
@@ -58,7 +42,7 @@ public class GameManagerSingleton : MonoBehaviour
     public void Pause()
     {
         pauseMenu.SetActive(true);
-        Time.timeScale=0f;
+        Time.timeScale = 0f;
         isPaused = true;
     }
     public void Resume()
@@ -70,9 +54,5 @@ public class GameManagerSingleton : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
-    }
-    public void LoadSelectedScene(int buildIndexNo)
-    {
-        SceneManager.LoadScene(buildIndexNo);
     }
 }

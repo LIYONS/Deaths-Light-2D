@@ -699,7 +699,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1501420977}
+      - m_Target: {fileID: 1501420979}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
@@ -1832,7 +1832,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1501420977}
+      - m_Target: {fileID: 1501420979}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: Resume
         m_Mode: 1
@@ -8449,6 +8449,7 @@ MonoBehaviour:
   jumpCount: 2
   jumpDelay: 0.5
   deathPs: {fileID: 1412559895783138610, guid: 6d94907c4d721d548a9a227f24804b57, type: 3}
+  menu: {fileID: 1501420979}
 --- !u!114 &1318177973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8604,7 +8605,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1322320635}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501420976}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1322320635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8837,8 +8850,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1501420977}
-        m_TargetAssemblyTypeName: GameManagerSingleton, Assembly-CSharp
+      - m_Target: {fileID: 1501420979}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: Pause
         m_Mode: 1
         m_Arguments:
@@ -9041,7 +9054,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1501420978}
-  - component: {fileID: 1501420977}
+  - component: {fileID: 1501420979}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -9049,20 +9062,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1501420977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1501420976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c716b7e5a3874954290c5411e719a5a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 309317474}
-  gameOverMenu: {fileID: 673605227}
 --- !u!4 &1501420978
 Transform:
   m_ObjectHideFlags: 0
@@ -9078,6 +9077,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1501420979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501420976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48b92b09ec4a8bf4ebbfa4d3efad3f67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 309317474}
+  gameOverMenu: {fileID: 673605227}
 --- !u!1001 &1569459517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9433,7 +9446,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1501420977}
+      - m_Target: {fileID: 1501420979}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
@@ -9922,7 +9935,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1501420977}
+      - m_Target: {fileID: 1501420979}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: Retry
         m_Mode: 1
@@ -15093,7 +15106,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2132434329}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1501420976}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2132434329
 MonoBehaviour:
   m_ObjectHideFlags: 0
