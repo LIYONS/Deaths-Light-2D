@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpCount;
     [SerializeField] float jumpDelay;
     [SerializeField] GameObject deathPs;
+    [SerializeField] Menu menu;
     float jumpCheck;
     Rigidbody2D rb;
     bool facingRight;
@@ -83,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Death()
     {
+        menu.GameOver();
         GameObject DeathPs= Instantiate(deathPs, transform.position,Quaternion.identity) as GameObject;
         gameObject.SetActive(false);
     }

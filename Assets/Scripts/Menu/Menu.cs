@@ -1,0 +1,58 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class Menu : MonoBehaviour
+{
+
+    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject gameOverMenu;
+    bool isPaused;
+    private void Start()
+    {
+        isPaused = false;
+        pauseMenu.SetActive(false);
+        gameOverMenu.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (isPaused && Input.GetKeyDown(KeyCode.Escape))
+        {
+            Resume();
+        }
+        else if (!isPaused && Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause();
+        }
+    }
+
+    public void GameOver()
+    {
+        gameOverMenu.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void Retry()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void Pause()
+    {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        isPaused = true;
+    }
+    public void Resume()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        isPaused = false;
+    }
+    public void Quit()
+    {
+        Application.Quit();
+    }
+}
