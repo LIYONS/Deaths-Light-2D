@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpCount;
     [SerializeField] float jumpDelay;
     [SerializeField] GameObject deathPs;
-    [SerializeField] Menu menu;
+    [SerializeField] Shaking shaking;
+    PlayerHealth playerHealth;
     float jumpCheck;
     Rigidbody2D rb;
     bool facingRight;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
         jumpCheck = 0f;
         facingRight = true;
         rb = GetComponent<Rigidbody2D>();
+        playerHealth = GetComponent<PlayerHealth>();
     }
     private void Update()
     {
@@ -84,8 +86,8 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Death()
     {
-        menu.GameOver();
+        StartCoroutine(shaking.Shake());
         GameObject DeathPs= Instantiate(deathPs, transform.position,Quaternion.identity) as GameObject;
-        gameObject.SetActive(false);
+        playerHealth.DeleteLife();
     }
 }
