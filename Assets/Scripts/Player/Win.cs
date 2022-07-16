@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Win : MonoBehaviour
 {
     SoundManager soundManager;
+    [SerializeField] int bIndex;
     private void Start()
     {
         soundManager = SoundManager.instance;
@@ -15,7 +16,7 @@ public class Win : MonoBehaviour
         if(collision.gameObject.tag=="Player")
         {
             soundManager.PlaySfx(Sounds.Win);
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(bIndex);
         }
     }
 }
