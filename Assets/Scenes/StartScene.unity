@@ -292,8 +292,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicAS: {fileID: 372237765}
   sfxAS: {fileID: 372237765}
-  musicVolume: 0.3
-  sfxVolume: 0.4
+  musicVolume: 0.6
+  sfxVolume: 0.7
   audioClips:
   - clipType: 0
     clip: {fileID: 8300000, guid: b5114417d4fb7ba4fa1db97b7e7b527c, type: 3}
