@@ -1,4 +1,3 @@
 # Death's Light
-#2D-Platformer
-#Unity
+-2D-Platformer
  
