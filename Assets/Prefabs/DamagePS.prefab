@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 567175496739678179}
   - component: {fileID: -486336658915429323}
   m_Layer: 0
-  m_Name: DeathPs
+  m_Name: DamagePS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

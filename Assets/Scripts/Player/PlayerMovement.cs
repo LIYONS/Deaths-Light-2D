@@ -1,93 +1,87 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+namespace DeathLight.Player
 {
-    [SerializeField] float playerSpeed;
-    [SerializeField] float jumpForce;
-    [SerializeField] float fallMultiplier;
-    [SerializeField] ParticleSystem JumpPs;
-    [SerializeField] float jumpCount;
-    [SerializeField] float jumpDelay;
-    [SerializeField] GameObject deathPs;
-    [SerializeField] Shaking shaking;
-    PlayerHealth playerHealth;
-    float jumpCheck;
-    Rigidbody2D rb;
-    bool facingRight;
-    float jumpTimer;
+    public class PlayerMovement : MonoBehaviour
+    {
+        [SerializeField] private float playerSpeed;
+        [SerializeField] private float jumpForce;
+        [SerializeField] private float fallGravityMultiplier;
+        [SerializeField] private ParticleSystem JumpPs;
+        [SerializeField] private float maxJumpCount;
+        [SerializeField] private float nextJumpDelay;
+        [SerializeField] private float jumpSpeedMultiplier;
 
-    private void Start()
-    {
-        jumpCheck = 0f;
-        facingRight = true;
-        rb = GetComponent<Rigidbody2D>();
-        playerHealth = GetComponent<PlayerHealth>();
-    }
-    private void Update()
-    {
-        float horizontal = Input.GetAxis("Horizontal");
-        Movement(horizontal);
-        JumpUpdate(horizontal);
-    }
-    void Movement(float horizontal)
-    {
-        if(horizontal>0 && !facingRight)
-        {
-            Flip();
-        }
-        else if(horizontal<0 && facingRight)
-        {
-            Flip();
-        }
-        if(rb.velocity.y!=0)
-        {
-            rb.velocity = new Vector2(horizontal *0.5f* playerSpeed, rb.velocity.y);
-            return;
-        }
-        rb.velocity = new Vector2(horizontal * playerSpeed, rb.velocity.y);
-    }
+        private float jumped;
+        private Rigidbody2D rigidBody;
+        private bool facingRight;
+        private float timer;
 
-
-    void Jump()
-    {
-        if (jumpCheck < jumpCount && jumpTimer<Time.time)
+        private void Start()
         {
-            rb.velocity += new Vector2(0, jumpForce);
-            JumpPs.Play();
-            jumpCheck++;
-            if(jumpCheck==jumpCount)
+            jumped = maxJumpCount;
+            facingRight = true;
+            rigidBody = GetComponent<Rigidbody2D>();
+        }
+        private void Update()
+        {
+            
+            Movement();
+            JumpUpdate();
+        }
+        private void Movement()
+        {
+            float movementInput = Input.GetAxis("Horizontal");
+            if (movementInput > 0 && !facingRight)
             {
-                jumpTimer = Time.time + jumpDelay;
-                jumpCheck = 0f;
+                Flip();
+            }
+            else if (movementInput < 0 && facingRight)
+            {
+                Flip();
+            }
+            if (rigidBody.velocity.y != 0)
+            {
+                rigidBody.velocity = new Vector2(movementInput * jumpSpeedMultiplier * playerSpeed, rigidBody.velocity.y);
+                return;
+            }
+            rigidBody.velocity = new Vector2(movementInput * playerSpeed, rigidBody.velocity.y);
+        }
+
+
+        private void Jump()
+        {
+            if (jumped >=0 && timer < Time.time)
+            {
+                rigidBody.velocity += new Vector2(0, jumpForce);
+                JumpPs.Play();
+                jumped--;
+                if (jumped <=0)
+                {
+                    timer = Time.time + nextJumpDelay;
+                    jumped = maxJumpCount;
+                }
             }
         }
-    }
-    void Flip()
-    {
-        facingRight = !facingRight;
-        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
-    }
-    void JumpUpdate(float horizontal)
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        private void Flip()
         {
-            Jump();
+            facingRight = !facingRight;
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
         }
-        if (rb.velocity.y<0)
+        private void JumpUpdate()
         {
-            rb.gravityScale = fallMultiplier;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump();
+            }
+            if (rigidBody.velocity.y < 0)
+            {
+                rigidBody.gravityScale = fallGravityMultiplier;
+            }
+            else
+            {
+                rigidBody.gravityScale = 2f;
+            }
         }
-        else
-        {
-            rb.gravityScale = 2f;
-        }
-    }
-    public void Death()
-    {
-        StartCoroutine(shaking.Shake());
-        GameObject DeathPs= Instantiate(deathPs, transform.position,Quaternion.identity) as GameObject;
-        playerHealth.DeleteLife();
     }
 }

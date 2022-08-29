@@ -1,44 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using DeathLight.GlobalHandlers;
+using DeathLight.UI;
+using System.Collections.Generic;
 
-public class PlayerHealth : MonoBehaviour
+namespace DeathLight.Player
 {
-    [SerializeField] GameObject[] life;
-    [SerializeField] Menu menu;
-    int livesCount;
-    SoundManager soundManager;
+    public class PlayerHealth : MonoBehaviour
+    {
+        [SerializeField] private List<GameObject> life;
+        [SerializeField] private UIHandler uiHandler;
+        [SerializeField] private GameObject damagePS;
 
-    Vector3 startPos;
-    private void Start()
-    {
-        livesCount = life.Length;
-        startPos = transform.position;
-        soundManager = SoundManager.instance;
-    }
-    private void Update()
-    {
-        if(transform.position.y<startPos.x-20)
+        private SoundManager soundManager;
+        private void Start()
         {
-            Kill();
+            soundManager = SoundManager.Instance;
         }
-    }
-    public void DeleteLife()
-    {
-        if(livesCount==0f)
+        public void TakeDamage()
         {
-            Kill();
+            Instantiate(damagePS, transform.position, Quaternion.identity);
+            life[^1].SetActive(false);
+            if (life.Count<=1)
+            {
+                Death();
+            }
+            else
+            {
+                _ = life.Remove(life[^1]);
+                if (soundManager)
+                {
+                    soundManager.PlaySfx(Sounds.Hurt);
+                }
+            }
         }
-        else
+        public void Death()
         {
-            life[--livesCount].SetActive(false);
-            soundManager.PlaySfx(Sounds.Hurt);
+            uiHandler.GameOver();
+            gameObject.SetActive(false);
+            if (soundManager)
+            {
+                soundManager.StopMusic();
+            }
         }
-    }
-     void Kill()
-    {
-        menu.GameOver();
-        gameObject.SetActive(false);
-        soundManager.StopMusic();
     }
 }
