@@ -1,22 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DeathLight.GlobalHandlers;
 
-public class Win : MonoBehaviour
+namespace DeathLight.Player
 {
-    SoundManager soundManager;
-    [SerializeField] int bIndex;
-    private void Start()
+    public class Win : MonoBehaviour
     {
-        soundManager = SoundManager.instance;
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag=="Player")
+        [SerializeField] private int winBuildIndex;
+
+        private SoundManager soundManager;
+        private void Start()
         {
-            soundManager.PlaySfx(Sounds.Win);
-            SceneManager.LoadScene(bIndex);
+            soundManager = SoundManager.Instance;
+        }
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.GetComponent<PlayerMovement>())
+            {
+                if (soundManager)
+                {
+                    soundManager.PlaySfx(Sounds.Win);
+                }
+                SceneManager.LoadScene(winBuildIndex);
+            }
         }
     }
 }
